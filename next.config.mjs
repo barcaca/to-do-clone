@@ -4,7 +4,13 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: ['*.googleusercontent.com', '*.githubusercontent.com'],
+        hostname: '*.googleusercontent.com',
+        port: '',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: '*.githubusercontent.com',
         port: '',
         pathname: '**',
       },
