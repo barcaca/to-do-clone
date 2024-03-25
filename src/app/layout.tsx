@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google'
 
 import { Footer } from '@/components/footer'
 import { NavBar } from '@/components/nav-bar'
+import NextAuthProvider from '@/components/next-auth-provider'
 import { ThemeProvider } from '@/components/theme-provider'
 import ToastProvider from '@/components/toaster-provider'
 
@@ -29,16 +30,18 @@ export default function RootLayout({
       <body
         className={`${inter.className} flex h-screen w-full flex-col antialiased`}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <NavBar />
-          <ToastProvider>{children}</ToastProvider>
-          <Footer />
-        </ThemeProvider>
+        <NextAuthProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <NavBar />
+            <ToastProvider>{children}</ToastProvider>
+            <Footer />
+          </ThemeProvider>
+        </NextAuthProvider>
       </body>
     </html>
   )
