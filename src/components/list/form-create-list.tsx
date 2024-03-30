@@ -15,7 +15,7 @@ export function FormCreateList() {
 
   const isEmptyInput = input && input.trim() !== ''
 
-  async function handleCreateList(formData: FormData) {
+  async function handleCreateListAction(formData: FormData) {
     const res = await createList(formData)
     customToast(res?.status, res?.message)
     if (res.status === 200 && res.url) {
@@ -26,7 +26,7 @@ export function FormCreateList() {
 
   return (
     <form
-      action={handleCreateList}
+      action={handleCreateListAction}
       className="flex flex-col font-medium"
       aria-describedby="form-error"
       onSubmit={() => setInput('')}

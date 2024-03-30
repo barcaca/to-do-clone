@@ -32,7 +32,6 @@ export async function completedTask(formData: FormData): Promise<FormState> {
   const { taskId, listId, isCompleted } = validatedFields.data
   const userId = session.user.id
   const toggleCompleted = isCompleted === 'true'
-  console.log(toggleCompleted)
 
   // Inserir dados no banco de dados
   try {

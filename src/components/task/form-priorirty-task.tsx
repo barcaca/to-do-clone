@@ -16,12 +16,12 @@ export function FormPriorityTask({
   taskId,
   listId,
 }: FormPriorityTaskProps) {
-  async function handleToggleCompleted(formData: FormData) {
+  async function handleTogglePriorityAction(formData: FormData) {
     const res = await priorityTask(formData)
     customToast(res?.status, res?.message)
   }
   return (
-    <form action={handleToggleCompleted}>
+    <form action={handleTogglePriorityAction}>
       <Input type="hidden" value={taskId} name="taskId" />
       <Input type="hidden" value={listId} name="listId" />
       <Input

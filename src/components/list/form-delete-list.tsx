@@ -12,14 +12,14 @@ interface FormDeleteListProps {
 }
 export function FormDeleteList({ id }: FormDeleteListProps) {
   const router = useRouter()
-  async function handleDeleteAction(formData: FormData) {
+  async function handleDeleteListAction(formData: FormData) {
     const res = await deleteList(formData)
     customToast(res?.status, res?.message)
     if (res.status === 200) router.push('/tasks/meudia')
   }
 
   return (
-    <form action={handleDeleteAction}>
+    <form action={handleDeleteListAction}>
       <Input type="hidden" value={id} name="id" />
       <Button
         type="submit"

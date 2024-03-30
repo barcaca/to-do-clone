@@ -25,7 +25,7 @@ export function FormCreateTask({ listId, listName }: FormCreateTaskProps) {
     setOpen((prevState) => !prevState)
   }
 
-  async function handleCreateTask(formData: FormData) {
+  async function handleCreateTaskAction(formData: FormData) {
     const res = await createTask(formData)
     customToast(res?.status, res?.message)
     if (res.status === 200) {
@@ -34,7 +34,7 @@ export function FormCreateTask({ listId, listName }: FormCreateTaskProps) {
   }
 
   return (
-    <form action={handleCreateTask}>
+    <form action={handleCreateTaskAction}>
       <Input type="hidden" value={listId} name="listId" />
       <Input type="hidden" value={listName} name="listName" />
       <Card className="overflow-hidden px-0">
