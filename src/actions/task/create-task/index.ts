@@ -5,9 +5,9 @@ import { revalidatePath } from 'next/cache'
 import { getAuthSession } from '@/lib/auth'
 import { db } from '@/lib/db'
 
-import { CompletedTask, FormState } from './type'
+import { CreateTask, FormState } from './type'
 // Cria uma nova lista no banco de dados.
-export async function completedTask(formData: FormData): Promise<FormState> {
+export async function createTask(formData: FormData): Promise<FormState> {
   // Obtém a sessão de autenticação
   const session = await getAuthSession()
 
@@ -15,33 +15,44 @@ export async function completedTask(formData: FormData): Promise<FormState> {
   if (!session) return { message: 'Error: Usuario não logado', status: 400 }
 
   // Valida formulário usando Zod
-  const validatedFields = CompletedTask.safeParse({
-    id: formData.get('id'),
+  const validatedFields = CreateTask.safeParse({
+    title: formData.get('title'),
     listId: formData.get('listId'),
-    isCompleted: formData.get('isCompleted'),
+    listName: formData.get('listName'),
   })
 
   // Se a validação do formulário falhar, retorne os erros antecipadamente. Caso contrário, continue.
   if (!validatedFields.success) {
     return {
+      errors: validatedFields.error.flatten().fieldErrors,
       message: 'Campos ausentes. Falha ao Criar Tarefa',
       status: 400,
     }
   }
   // Prepara os dados para inserção no banco de dados
-  const { id, listId, isCompleted } = validatedFields.data
+  const { title, listId, listName } = validatedFields.data
   const userId = session.user.id
-  const toggleCompleted = isCompleted === 'true'
-  console.log(toggleCompleted)
 
   // Inserir dados no banco de dados
   try {
-    await db.task.update({
-      where: { id, userId },
-      data: {
-        completed: !toggleCompleted,
-      },
-    })
+    if (listName === 'importante') {
+      await db.task.create({
+        data: {
+          title,
+          userId,
+          listId,
+          priority: true,
+        },
+      })
+    } else {
+      await db.task.create({
+        data: {
+          title,
+          userId,
+          listId,
+        },
+      })
+    }
   } catch (error) {
     // Se ocorrer um erro no banco de dados, retorne um erro mais específico.
     return {
@@ -50,7 +61,7 @@ export async function completedTask(formData: FormData): Promise<FormState> {
     }
   }
   // Revalidar o cache da página de tarefas e redirecionar o usuário.
-  revalidatePath(`/tasks/${listId}`)
+  revalidatePath(`/tasks/${listName}`)
   return {
     message: 'Tarefa criada com sucesso',
     status: 200,

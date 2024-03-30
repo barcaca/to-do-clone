@@ -1,7 +1,7 @@
 import { Task } from '@prisma/client'
 
-import { FormCreateTask } from '@/components/form/form-create-task'
 import { ListHeaderMenu } from '@/components/list-header-menu'
+import { FormCreateTask } from '@/components/task/form-create-task'
 import { TasksList } from '@/components/tasks-list'
 import { getUserListById, getUserTasksByName } from '@/lib/data'
 

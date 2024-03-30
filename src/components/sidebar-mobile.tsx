@@ -7,7 +7,7 @@ import {
 } from 'lucide-react'
 import { ReactNode } from 'react'
 
-import { FormCreateList } from './form/form-create-list'
+import { FormCreateList } from './list/form-create-list'
 import { SideBarItem } from './sidebar-item'
 import { Button } from './ui/button'
 import { Separator } from './ui/separator'

@@ -3,7 +3,7 @@ import { PlusIcon } from 'lucide-react'
 import { redirect } from 'next/navigation'
 import { useState } from 'react'
 
-import { createList } from '@/actions/create-list'
+import { createList } from '@/actions/list/create-list'
 import { cn } from '@/lib/utils'
 import { customToast } from '@/lib/utils/custom-toast'
 

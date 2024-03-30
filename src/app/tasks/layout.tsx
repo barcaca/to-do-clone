@@ -11,7 +11,7 @@ export default function LayoutTasks({ children }: { children: ReactNode }) {
         <SideBar>
           <SidebarUserItem />
         </SideBar>
-        <main className="flex-1 space-y-6 overflow-y-auto overscroll-contain p-6">
+        <main className="flex-1 space-y-6 overflow-y-auto overscroll-contain">
           {children}
         </main>
       </SidebarProvider>

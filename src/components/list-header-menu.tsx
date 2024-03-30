@@ -11,7 +11,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
-import { FormDeleteList } from './form/form-delete-list'
+import { FormDeleteList } from './list/form-delete-list'
 import { SidebarMobile } from './sidebar-mobile'
 import { SidebarUserItem } from './sidebar-user-item'
 import {

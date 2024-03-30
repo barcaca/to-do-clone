@@ -2,7 +2,7 @@
 import { CircleIcon, PlusIcon } from 'lucide-react'
 import { useState } from 'react'
 
-import { createTask } from '@/actions/create-task'
+import { createTask } from '@/actions/task/create-task'
 import { customToast } from '@/lib/utils/custom-toast'
 
 import { Button } from '../ui/button'

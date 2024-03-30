@@ -1,7 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 
-import { deleteList } from '@/actions/delete-list'
+import { deleteList } from '@/actions/list/delete-list'
 import { customToast } from '@/lib/utils/custom-toast'
 
 import { Button } from '../ui/button'

@@ -6,7 +6,7 @@ import { SideBarItem } from '@/components/sidebar-item'
 import { Separator } from '@/components/ui/separator'
 import { useSidebarContext } from '@/contexts/sidebar'
 
-import { FormCreateList } from './form/form-create-list'
+import { FormCreateList } from './list/form-create-list'
 import { SidebarButton } from './sidebar-button'
 
 const sidebarItems = [

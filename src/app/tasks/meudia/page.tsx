@@ -2,8 +2,8 @@ import { Task } from '@prisma/client'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale/pt-BR'
 
-import { FormCreateTask } from '@/components/form/form-create-task'
 import { ListHeaderMenu } from '@/components/list-header-menu'
+import { FormCreateTask } from '@/components/task/form-create-task'
 import { TasksList } from '@/components/tasks-list'
 import { getUserListByName, getUserTasksByNameAndDay } from '@/lib/data'
 

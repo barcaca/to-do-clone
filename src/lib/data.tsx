@@ -266,3 +266,43 @@ async function fetchAllUserTasks(): Promise<Task[]> {
 }
 // Exporta a função buscando a tarefas, com cache.
 export const getAllUserTasks = cache(fetchAllUserTasks)
+
+async function fetchUserHighPriorityTasks(): Promise<Task[]> {
+  // Obtém a sessão do usuário.
+  const session = await getAuthSession()
+
+  // Verifica se o usuário está logado.
+  if (!session) {
+    throw new Error('Erro: Usuário não logado')
+  }
+
+  // Obtém o ID do usuário.
+  const id = session.user.id
+
+  try {
+    // Busca a lista do usuário no banco de dados.
+    const data = await db.user.findFirst({
+      where: { id },
+      include: {
+        tasks: {
+          where: {
+            priority: true,
+          },
+        },
+      },
+    })
+
+    // Verifica se a tarefa foi encontrada.
+    if (!data) {
+      throw new Error('Error: Tarefas não encontrado')
+    }
+
+    // Retorna as tarefas.
+    return data.tasks
+  } catch (error) {
+    // Lança um erro database para o cliente.
+    throw new Error('Database Error: Falha ao buscar tarefas do usuário')
+  }
+}
+
+export const getUserHighPriorityTasks = cache(fetchUserHighPriorityTasks)

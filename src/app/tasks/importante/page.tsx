@@ -1,14 +1,14 @@
 import { Task } from '@prisma/client'
 
-import { FormCreateTask } from '@/components/form/form-create-task'
 import { ListHeaderMenu } from '@/components/list-header-menu'
+import { FormCreateTask } from '@/components/task/form-create-task'
 import { TasksList } from '@/components/tasks-list'
-import { getUserListByName, getUserTasksByName } from '@/lib/data'
+import { getUserHighPriorityTasks, getUserListByName } from '@/lib/data'
 
 export default async function ImportantePage() {
   const namePage = 'importante'
   const lists = await getUserListByName(namePage)
-  const tasks = await getUserTasksByName(lists.id)
+  const tasks = await getUserHighPriorityTasks()
   const [list, task] = await Promise.all([lists, tasks])
   const { id } = list
   return (
