@@ -3,7 +3,6 @@ import '@/styles/globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 
-import { Footer } from '@/components/footer'
 import { NavBar } from '@/components/nav-bar'
 import NextAuthProvider from '@/components/next-auth-provider'
 import { ThemeProvider } from '@/components/theme-provider'
@@ -39,7 +38,6 @@ export default function RootLayout({
           >
             <NavBar />
             <ToastProvider>{children}</ToastProvider>
-            <Footer />
           </ThemeProvider>
         </NextAuthProvider>
       </body>

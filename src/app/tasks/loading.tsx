@@ -1,13 +1,16 @@
-import { CircleDashedIcon } from 'lucide-react'
+import { Skeleton } from '@/components/ui/skeleton'
 
 export default function Loading() {
   return (
-    <div className="flex h-full w-full flex-1 flex-col items-center justify-center">
-      <CircleDashedIcon
-        size={96}
-        className="animate-spin text-muted-foreground"
-      />
-      <p>Carregando</p>
+    <div className="flex flex-1 flex-col space-y-6 p-6">
+      <Skeleton className="h-10 w-80" />
+      <Skeleton className="h-10 w-full" />
+      <div className="flex flex-col space-y-6">
+        <Skeleton className="h-10 w-full" />
+        <Skeleton className="h-10 w-full" />
+        <Skeleton className="h-10 w-full" />
+        <Skeleton className="h-10 w-full" />
+      </div>
     </div>
   )
 }

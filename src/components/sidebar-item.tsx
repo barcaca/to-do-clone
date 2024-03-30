@@ -29,9 +29,6 @@ export function SideBarItem({ href, icon, label }: SideBarItemProps) {
       >
         {icon || <MenuIcon />}
         <span className="ms-3 flex-1">{label}</span>
-        <span className="ms-3 inline-flex h-3 w-3 items-center justify-center rounded-full bg-primary p-3 text-sm font-medium text-primary-foreground ">
-          3
-        </span>
       </Link>
     </li>
   )

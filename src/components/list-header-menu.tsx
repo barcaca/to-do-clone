@@ -35,12 +35,12 @@ export function ListHeaderMenu({
   isListCreated,
 }: ListHeaderMenuProps) {
   return (
-    <div className="flex items-center space-x-1 px-1 py-6">
+    <div className="flex items-center">
       <SidebarMobile>
         <SidebarUserItem />
       </SidebarMobile>
       <SidebarButton isSidebarClose={true} />
-      <h1 className="pl-4 text-xl font-bold text-primary">{listName}</h1>
+      <h1 className="px-1 text-xl font-bold text-primary">{listName}</h1>
       <Dialog>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

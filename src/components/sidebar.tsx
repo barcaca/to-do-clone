@@ -38,7 +38,7 @@ export function SideBar({ children }: { children: ReactNode }) {
     <>
       <aside
         id="logo-sidebar"
-        className="hidden w-64 -translate-x-full border-r pt-6 transition-transform data-[collapsed=true]:hidden data-[collapsed=true]:-translate-x-full md:block md:translate-x-0"
+        className="hidden h-full w-64 -translate-x-full border-r pt-6 transition-transform data-[collapsed=true]:hidden data-[collapsed=true]:-translate-x-full md:block md:translate-x-0"
         aria-label="Sidebar"
         data-collapsed={isSidebarOpen}
       >
