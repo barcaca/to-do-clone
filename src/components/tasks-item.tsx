@@ -1,8 +1,7 @@
 import { Task } from '@prisma/client'
-import { StarIcon } from 'lucide-react'
 
 import { FormCompletedTask } from './task/form-completed-task'
-import { Button } from './ui/button'
+import { FormPriorityTask } from './task/form-priorirty-task'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card'
 interface TasksItemProps {
   task: Task
@@ -15,29 +14,19 @@ export function TasksItem({ task, listId }: TasksItemProps) {
         <CardHeader className="p-0">
           <CardTitle className="">
             <FormCompletedTask
-              completed={task.completed}
               taskId={task.id}
               listId={listId}
+              completed={task.completed}
             />
           </CardTitle>
         </CardHeader>
         <CardContent className="flex-1 p-0">{task.title}</CardContent>
         <CardFooter className="p-0">
-          <Button
-            title={
-              task.priority
-                ? 'Remova a importancia'
-                : 'Marque a tarefa como importante'
-            }
-            variant={'ghost'}
-            size={'icon'}
-            className="group-hover:bg-transparent"
-          >
-            <StarIcon
-              className="text-primary data-[priority=true]:fill-primary"
-              data-priority={task.priority}
-            />
-          </Button>
+          <FormPriorityTask
+            taskId={task.id}
+            listId={listId}
+            priority={task.priority}
+          />
         </CardFooter>
       </Card>
     </div>

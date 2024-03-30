@@ -16,7 +16,7 @@ export async function priorityTask(formData: FormData): Promise<FormState> {
 
   // Valida formulário usando Zod
   const validatedFields = PrioritySchema.safeParse({
-    id: formData.get('id'),
+    taskId: formData.get('taskId'),
     listId: formData.get('listId'),
     isPriority: formData.get('isPriority'),
   })
@@ -24,12 +24,12 @@ export async function priorityTask(formData: FormData): Promise<FormState> {
   // Se a validação do formulário falhar, retorne os erros antecipadamente. Caso contrário, continue.
   if (!validatedFields.success) {
     return {
-      message: 'Campos ausentes. Falha ao Criar Tarefa',
+      message: 'Campos ausentes. Falha ao Priorizar Tarefa',
       status: 400,
     }
   }
   // Prepara os dados para inserção no banco de dados
-  const { id, listId, isPriority } = validatedFields.data
+  const { taskId, listId, isPriority } = validatedFields.data
   const userId = session.user.id
   const togglePriority = isPriority === 'true'
   console.log(togglePriority)
@@ -37,7 +37,7 @@ export async function priorityTask(formData: FormData): Promise<FormState> {
   // Inserir dados no banco de dados
   try {
     await db.task.update({
-      where: { id, userId },
+      where: { id: taskId, userId },
       data: {
         priority: !togglePriority,
       },
@@ -45,14 +45,21 @@ export async function priorityTask(formData: FormData): Promise<FormState> {
   } catch (error) {
     // Se ocorrer um erro no banco de dados, retorne um erro mais específico.
     return {
-      message: 'Database Error: Falha ao Criar Tarefa',
+      message: 'Database Error: Falha ao Priorizar Tarefa',
       status: 500,
+    }
+  }
+  if (togglePriority) {
+    revalidatePath(`/tasks/${listId}`)
+    return {
+      message: 'Tarefa despriorizado com sucesso',
+      status: 200,
     }
   }
   // Revalidar o cache da página de tarefas e redirecionar o usuário.
   revalidatePath(`/tasks/${listId}`)
   return {
-    message: 'Tarefa criada com sucesso',
+    message: 'Tarefa priorizada com sucesso',
     status: 200,
   }
 }

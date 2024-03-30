@@ -53,13 +53,13 @@ export async function completedTask(formData: FormData): Promise<FormState> {
   if (toggleCompleted) {
     revalidatePath(`/tasks/${listId}`)
     return {
-      message: 'Tarefa atualizada com sucesso',
+      message: 'Tarefa Atualizada com sucesso',
       status: 200,
     }
   }
   revalidatePath(`/tasks/${listId}`)
   return {
-    message: 'Tarefa completada com sucesso',
+    message: 'Tarefa Completada com sucesso',
     status: 200,
   }
 }
