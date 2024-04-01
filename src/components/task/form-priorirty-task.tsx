@@ -10,18 +10,20 @@ interface FormPriorityTaskProps {
   priority: boolean
   taskId: string
   listId: string
+  title?: string
 }
 export function FormPriorityTask({
   priority,
   taskId,
   listId,
+  title,
 }: FormPriorityTaskProps) {
   async function handleTogglePriorityAction(formData: FormData) {
     const res = await priorityTask(formData)
     customToast(res?.status, res?.message)
   }
   return (
-    <form action={handleTogglePriorityAction}>
+    <form action={handleTogglePriorityAction} className="">
       <Input type="hidden" value={taskId} name="taskId" />
       <Input type="hidden" value={listId} name="listId" />
       <Input
@@ -36,12 +38,13 @@ export function FormPriorityTask({
         }
         variant={'ghost'}
         size={'icon'}
-        className="group-hover:bg-transparent"
+        className="group/button relative w-full items-center justify-start rounded-none px-3 group-hover:bg-transparent"
       >
         <StarIcon
           className="text-primary data-[priority=true]:fill-primary"
           data-priority={priority}
         />
+        {title && <span className="ml-4">{title}</span>}
       </Button>
     </form>
   )

@@ -32,15 +32,11 @@ export function FormCompletedTask({
         name="isCompleted"
       />
       <Button
-        title={completed ? 'Atualize a Tarefa' : 'Complete a Tarefa'}
         type="submit"
+        title={completed ? 'Atualize a Tarefa' : 'Complete a Tarefa'}
         variant={'ghost'}
         size={'icon'}
-        className={
-          title
-            ? 'flex w-full gap-4 rounded-none px-4'
-            : 'group/button relative w-full items-center justify-center group-hover:bg-transparent'
-        }
+        className="group/button relative w-full items-center justify-start rounded-none px-3 group-hover:bg-transparent"
       >
         <CircleIcon
           className="text-primary data-[completed=true]:fill-primary"
@@ -53,7 +49,7 @@ export function FormCompletedTask({
             size={16}
           />
         )}
-        <span className="">{title}</span>
+        {title && <span className="ml-4">{title}</span>}
       </Button>
     </form>
   )

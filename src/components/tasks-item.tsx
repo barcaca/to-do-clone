@@ -1,5 +1,5 @@
 import { Task } from '@prisma/client'
-import { StarIcon, SunIcon, Trash2Icon } from 'lucide-react'
+import { Trash2Icon } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
@@ -54,29 +54,18 @@ export function TasksItem({ task, listId }: TasksItemProps) {
           </Card>
         </ContextMenuTrigger>
         <ContextMenuContent className="px-0">
+          <ContextMenuItem className="px-0"></ContextMenuItem>
           <ContextMenuItem className="px-0">
-            <form action="">
-              <Button
-                type="submit"
-                variant={'ghost'}
-                className="w-full justify-start gap-4 rounded-none px-4 hover:bg-none"
-              >
-                <SunIcon />
-                Adicionar ao Meu Dia
-              </Button>
-            </form>
-          </ContextMenuItem>
-          <ContextMenuItem className="px-0">
-            <form action="">
-              <Button
-                type="submit"
-                variant={'ghost'}
-                className="w-full justify-start gap-4 rounded-none px-4 hover:bg-none"
-              >
-                <StarIcon />
-                Marcar como Importante
-              </Button>
-            </form>
+            <FormPriorityTask
+              taskId={task.id}
+              listId={listId}
+              priority={task.priority}
+              title={
+                task.priority
+                  ? 'Remover a importância'
+                  : 'Marcar como importante'
+              }
+            />
           </ContextMenuItem>
           <ContextMenuItem className="px-0">
             <FormCompletedTask
@@ -100,7 +89,7 @@ export function TasksItem({ task, listId }: TasksItemProps) {
                 )}
               >
                 <Trash2Icon />
-                Excluir Tarefas
+                Excluir Tarefa
               </div>
             </ContextMenuItem>
           </DialogTrigger>
